@@ -1,19 +1,32 @@
 const express = require('express');
+require('express-namespace')
 const bodyParser = require('body-parser');
 const port = 3000;
 // const dbConfig = require('./config/database.config.js');
 // const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.namespace('/api/', () => {
+    app.get('/', (req, res) => {
+        res.json({"message": "Welcome to Api."});
+    });
+    // require('./app/routes/note.routes.js')(app);
+    app.namespace('utorrent/', () => {
+        require('./app/routes/utorrent.routes.js')(app);
+    })
 
-app.use(bodyParser.json())
+})
 
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+    res.json({"message": "Welcome to Home page"});
 });
+
+
+
 
 app.listen(port, () => {
     console.log("Server is listening on port 3000");
