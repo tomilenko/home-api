@@ -1,5 +1,7 @@
 const config = require('../../config/global.config.js');
+const lgtv = require("lgtv");
 const lgtvConfig = config.lgtv;
+
 
 exports.turnOff = (req, res) => {
     lgtv.connect(lgtvConfig.ip, (err, response) => {
