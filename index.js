@@ -17,6 +17,10 @@ app.namespace('/api/', () => {
     // require('./app/routes/note.routes.js')(app);
     app.namespace('utorrent/', () => {
         require('./app/routes/utorrent.routes.js')(app);
+    });
+
+    app.namespace('lgtv/', () => {
+        require('./app/routes/lgtv.routes.js')(app);
     })
 
 })
