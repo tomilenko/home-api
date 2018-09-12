@@ -21,7 +21,7 @@ exports.changeInput = (req, res) => {
 
     lgtv.connect(lgtvConfig.ip, (err, response) => {
         if (!err) {
-            lgtv.set_input(`HODM_${id}`, (err, response) => {
+            lgtv.set_input(`HDMI_${id}`, (err, response) => {
                 // if (response) {
                     res.json({
                         "success": true,
